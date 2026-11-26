@@ -1,4 +1,4 @@
-<h1 align="center">🔊 sonarport</h1>
+<h1 align="center"> sonarport</h1>
 
 <p align="center">
   <b>Scanner de portas TCP simples, rápido e ético, escrito em Python puro.</b><br>
