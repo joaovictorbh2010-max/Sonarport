@@ -1,3 +1,3 @@
-# Opcional: garante cores em qualquer terminal do Windows.
-# O sonarport funciona sem ele (usa apenas a biblioteca padrão do Python).
+# Optional: ensures colors on any Windows terminal.
+# sonarport works without it (it uses only the Python standard library).
 colorama>=0.4.6
