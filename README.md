@@ -1,202 +1,200 @@
-<h1 align="center"> Sonarport</h1>
+<h1 align="center">Sonarport</h1>
 
 <p align="center">
-  <b>Scanner de portas TCP simples, rápido e ético, escrito em Python puro.</b><br>
-  Descubra quais portas estão abertas no seu computador, ou em hosts que você tem permissão para testar, e quais serviços rodam nelas.
+  <b>A simple, fast and ethical TCP port scanner written in pure Python.</b><br>
+  Find out which ports are open on your computer, or on hosts you have permission to test, and which services run on them.
 </p>
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/python-3.8%2B-blue?logo=python&logoColor=white">
-  <img alt="Dependências" src="https://img.shields.io/badge/depend%C3%AAncias-nenhuma%20obrigat%C3%B3ria-brightgreen">
-  <img alt="Plataformas" src="https://img.shields.io/badge/plataformas-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey">
-  <img alt="Licença" src="https://img.shields.io/badge/licen%C3%A7a-MIT-yellow">
+  <img alt="Dependencies" src="https://img.shields.io/badge/dependencies-none%20required-brightgreen">
+  <img alt="Platforms" src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey">
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-yellow">
 </p>
 
 ---
 
 > [!WARNING]
-> **Uso ético e legal**
+> **Ethical and legal use**
 >
-> O sonarport é uma ferramenta **educacional e de diagnóstico**. Use-o **somente**:
-> - no **seu próprio computador** (`localhost`);
-> - em redes e dispositivos que **são seus**;
-> - em sistemas para os quais você tem **autorização explícita** do dono (de preferência por escrito).
+> Sonarport is an **educational and diagnostic** tool. Use it **only**:
+> - on your **own computer** (`localhost`);
+> - on networks and devices that **belong to you**;
+> - on systems for which you have **explicit authorization** from the owner (preferably in writing).
 >
-> Escanear sistemas de terceiros sem permissão pode ser **crime** (no Brasil, por exemplo, a Lei 12.737/2012) e viola os termos de uso da maioria dos provedores. O autor não se responsabiliza pelo mau uso.
-> Por isso o sonarport **mira o localhost por padrão** e **pede confirmação** antes de escanear qualquer outro alvo.
+> Scanning third-party systems without permission may be a **crime** (in Brazil, for example, Law 12.737/2012) and violates the terms of service of most providers. The author is not responsible for misuse.
+> That is why Sonarport **targets localhost by default** and **asks for confirmation** before scanning any other target.
 
 ---
 
-##  Recursos
+## Features
 
-| Recurso | Descrição |
+| Feature | Description |
 |---|---|
-|  **Menu interativo** | Escolha tudo digitando um número, sem decorar comandos |
-|  **Linha de comando** | Argumentos para automação e scripts (`--alvo`, `--comuns`, `--completo`...) |
-|  **Multithread** | Centenas de "trabalhadores" em paralelo, com barra de progresso |
-|  **Identificação de serviços** | Mostra o serviço típico de cada porta (22 = SSH, 80 = HTTP, 443 = HTTPS...) |
-|  **Leitura de banner** | Tenta ler a "apresentação" do serviço (ex.: versão do SSH, cabeçalho `Server` do HTTP/HTTPS) |
-|  **Resolução de DNS** | Digite `exemplo.com` e ele descobre o IP sozinho |
-|  **Tabela colorida** | Resultado organizado em porta / estado / serviço / banner |
-|  **Relatórios** | Salva em `.txt` (legível) e `.csv` (abre no Excel / Planilhas) |
-|  **Trava ética** | Localhost por padrão e confirmação obrigatória para outros alvos |
-|  **Zero dependências** | Só a biblioteca padrão (`socket`, `threading`, `queue`...). `colorama` é opcional |
+| **Interactive menu** | Do everything by typing a number, no commands to memorize |
+| **Command line** | Arguments for automation and scripts (`--target`, `--common`, `--full`...) |
+| **Multithreaded** | Hundreds of "workers" in parallel, with a progress bar |
+| **Service identification** | Shows the typical service of each port (22 = SSH, 80 = HTTP, 443 = HTTPS...) |
+| **Banner grabbing** | Tries to read the service "greeting" (e.g. SSH version, HTTP/HTTPS `Server` header) |
+| **DNS resolution** | Type `example.com` and it finds the IP on its own |
+| **Colored table** | Results organized by port / state / service / banner |
+| **Reports** | Saves to `.txt` (readable) and `.csv` (opens in Excel / Sheets) |
+| **Ethical guard** | Localhost by default and mandatory confirmation for other targets |
+| **Zero dependencies** | Only the standard library (`socket`, `threading`, `queue`...). `colorama` is optional |
 
-## 📦 Instalação
+## 📦 Installation
 
-**Pré-requisito:** [Python 3.8 ou superior](https://www.python.org/downloads/).
+**Requirement:** [Python 3.8 or newer](https://www.python.org/downloads/).
 
 ```bash
-# 1. Baixe o projeto
+# 1. Download the project
 git clone https://github.com/joaovictorbh2010-max/sonarport.git
 cd sonarport
 
-# 2. (Opcional) Instale o colorama para cores em qualquer terminal do Windows
+# 2. (Optional) Install colorama for colors on any Windows terminal
 pip install -r requirements.txt
 ```
 
-Pronto, não precisa de mais nada. Sem o `colorama` as cores continuam funcionando no Windows Terminal, no PowerShell moderno, no Linux e no macOS.
+That's it, nothing else is needed. Without `colorama`, colors still work on Windows Terminal, modern PowerShell, Linux and macOS.
 
-##  Como usar
+## How to use
 
-### Modo 1: menu interativo (mais fácil)
+### Mode 1: interactive menu (easiest)
 
 ```bash
 python sonarport.py
 ```
 
-```
-  sonarport v1.0.0 - scanner de portas ético
-  Use apenas em sistemas seus ou com autorização.
+sonarport v1.0.0 - ethical port scanner
+Use only on systems you own or are authorized to test.
 
-  ===== MENU =====
-  1) Escanear meu próprio computador (localhost)
-  2) Escanear um IP ou site que eu informar
-  3) Escanear as portas mais comuns (rápido)
-  4) Escaneamento completo (todas as portas 1-65535)
-  5) Salvar relatório do último escaneamento
-  0) Sair
+===== MENU =====
 
-  Escolha uma opção:
-```
+Scan my own computer (localhost)
+Scan an IP or website I provide
+Scan the most common ports (fast)
+Full scan (all ports 1-65535)
+Save the report of the last scan
+Exit
 
-| Opção | O que faz |
+Choose an option:
+
+
+| Option | What it does |
 |---|---|
-| **1** | Escaneia o seu próprio PC. Pergunta se é rápido (Enter) ou completo (`c`) |
-| **2** | Pede um IP ou site, **confirma a permissão** e pergunta o tipo de escaneamento |
-| **3** | Escaneia as ~75 portas mais comuns (Enter = localhost) |
-| **4** | Escaneia todas as 65.535 portas (Enter = localhost) |
-| **5** | Salva o último resultado em `.txt`, `.csv` ou ambos, na pasta `relatorios/` |
-| **0** | Sai do programa |
+| **1** | Scans your own PC. Asks whether it's fast (Enter) or full (`c`) |
+| **2** | Asks for an IP or website, **confirms permission** and asks the scan type |
+| **3** | Scans the ~75 most common ports (Enter = localhost) |
+| **4** | Scans all 65,535 ports (Enter = localhost) |
+| **5** | Saves the last result to `.txt`, `.csv` or both, in the `reports/` folder |
+| **0** | Exits the program |
 
-### Modo 2: linha de comando
+### Mode 2: command line
 
 ```bash
-# Portas comuns no seu computador (o alvo padrão é o localhost)
-python sonarport.py --comuns
+# Common ports on your computer (the default target is localhost)
+python sonarport.py --common
 
-# Portas comuns em um dispositivo da sua rede
-python sonarport.py --alvo 192.168.0.1 --comuns
+# Common ports on a device on your network
+python sonarport.py --target 192.168.0.1 --common
 
-# Todas as portas, salvando o relatório em .txt e .csv
-python sonarport.py --completo --salvar ambos
+# All ports, saving the report to .txt and .csv
+python sonarport.py --full --save both
 
-# Portas específicas ou intervalos em um site (o DNS é resolvido sozinho)
-python sonarport.py --alvo exemplo.com --portas 20-25,80,443
+# Specific ports or ranges on a website (DNS is resolved automatically)
+python sonarport.py --target example.com --ports 20-25,80,443
 
-# Mais velocidade: mais threads e timeout menor
-python sonarport.py --completo --threads 1000 --timeout 0.3
+# More speed: more threads and a lower timeout
+python sonarport.py --full --threads 1000 --timeout 0.3
 
-# Ajuda completa
+# Full help
 python sonarport.py --help
 ```
 
-| Argumento | Atalho | Descrição | Padrão |
+| Argument | Shortcut | Description | Default |
 |---|---|---|---|
-| `--alvo` | `-a` | IP ou site a escanear | `localhost` |
-| `--comuns` | `-c` | Escaneia as portas mais comuns | ✅ |
-| `--completo` | `-C` | Escaneia as portas 1-65535 | |
-| `--portas` | `-p` | Lista/intervalos, ex.: `22,80,443` ou `1-1024` | |
-| `--threads` | `-t` | Quantidade de threads simultâneas (1-2000) | `400` |
-| `--timeout` | | Espera máxima por porta, em segundos | `0.5` |
-| `--sem-banner` | | Não tenta ler o banner dos serviços | |
-| `--salvar` | `-s` | Salva relatório: `txt`, `csv` ou `ambos` | |
-| `--pasta` | | Pasta onde os relatórios são salvos | `relatorios` |
-| `--sim-tenho-permissao` | | Confirma a autorização sem perguntar (para scripts) | |
-| `--sem-cor` | | Desativa as cores | |
-| `--versao` | `-v` | Mostra a versão | |
+| `--target` | `-a` | IP or website to scan | `localhost` |
+| `--common` | `-c` | Scans the most common ports | ✅ |
+| `--full` | `-C` | Scans ports 1-65535 | |
+| `--ports` | `-p` | List/ranges, e.g. `22,80,443` or `1-1024` | |
+| `--threads` | `-t` | Number of simultaneous threads (1-2000) | `400` |
+| `--timeout` | | Max wait per port, in seconds | `0.5` |
+| `--no-banner` | | Does not try to read service banners | |
+| `--save` | `-s` | Save report: `txt`, `csv` or `both` | |
+| `--folder` | | Folder where reports are saved | `reports` |
+| `--yes-i-have-permission` | | Confirms authorization without asking (for scripts) | |
+| `--no-color` | | Disables colors | |
+| `--version` | `-v` | Shows the version | |
 
-> Ao escanear um alvo que não é o seu computador, o sonarport mostra um aviso, diz se o IP é **público** ou de **rede privada** e pede que você digite `sim`. Em scripts sem terminal, é preciso passar `--sim-tenho-permissao`, de forma consciente.
+> When scanning a target that is not your own computer, Sonarport shows a warning, states whether the IP is **public** or on a **private network**, and asks you to type `yes`. In scripts without a terminal, you must pass `--yes-i-have-permission`, consciously.
 
-## 📊 Exemplo de saída
+## 📊 Example output
 
-Escaneamento rápido do localhost em um Windows 11:
+Fast scan of localhost on Windows 11:
 
-```
-[*] Alvo: localhost (127.0.0.1)
-[*] Modo: portas comuns | 74 porta(s) | 400 threads | timeout 0.5s
-  [██████████████████████████████] 100.0%  74/74 portas | abertas: 4
-[*] Lendo banners de 4 porta(s) aberta(s)...
+[] Target: localhost (127.0.0.1)
+[] Mode: common ports | 74 port(s) | 400 threads | timeout 0.5s
+[██████████████████████████████] 100.0% 74/74 ports | open: 4
+[*] Reading banners from 4 open port(s)...
 
 ┌──────────┬────────┬────────────────────────┬──────────────────────────────────────────────────────────────────┐
-│ PORTA    │ ESTADO │ SERVIÇO                │ BANNER                                                           │
+│ PORT │ STATE │ SERVICE │ BANNER │
 ├──────────┼────────┼────────────────────────┼──────────────────────────────────────────────────────────────────┤
-│ 135/tcp  │ ABERTA │ MS-RPC                 │ -                                                                │
-│ 445/tcp  │ ABERTA │ SMB                    │ -                                                                │
-│ 5357/tcp │ ABERTA │ WSDAPI                 │ HTTP/1.1 503 Service Unavailable | Server: Microsoft-HTTPAPI/2.0 │
-│ 8080/tcp │ ABERTA │ HTTP proxy/alternativo │ -                                                                │
+│ 135/tcp │ OPEN │ MS-RPC │ - │
+│ 445/tcp │ OPEN │ SMB │ - │
+│ 5357/tcp │ OPEN │ WSDAPI │ HTTP/1.1 503 Service Unavailable | Server: Microsoft-HTTPAPI/2.0 │
+│ 8080/tcp │ OPEN │ HTTP proxy/alternative │ - │
 └──────────┴────────┴────────────────────────┴──────────────────────────────────────────────────────────────────┘
 
-[+] 4 porta(s) aberta(s) de 74 verificada(s) em localhost (127.0.0.1) - 4.6s
-```
+[+] 4 open port(s) out of 74 checked on localhost (127.0.0.1) - 4.6s
 
-Relatório `.csv` gerado:
+
+Generated `.csv` report:
 
 ```csv
-alvo,ip,porta,protocolo,estado,servico,banner,data
-localhost,127.0.0.1,135,tcp,ABERTA,MS-RPC,,2026-11-26 11:10:18
-localhost,127.0.0.1,445,tcp,ABERTA,SMB,,2026-11-26 11:10:18
-localhost,127.0.0.1,5357,tcp,ABERTA,WSDAPI,HTTP/1.1 503 Service Unavailable | Server: Microsoft-HTTPAPI/2.0,2026-11-26 11:10:18
+target,ip,port,protocol,state,service,banner,date
+localhost,127.0.0.1,135,tcp,OPEN,MS-RPC,,2026-11-26 11:10:18
+localhost,127.0.0.1,445,tcp,OPEN,SMB,,2026-11-26 11:10:18
+localhost,127.0.0.1,5357,tcp,OPEN,WSDAPI,HTTP/1.1 503 Service Unavailable | Server: Microsoft-HTTPAPI/2.0,2026-11-26 11:10:18
 ```
 
-## ⚙️ Como funciona
+## ⚙️ How it works
 
-1. **Resolução do alvo:** `socket.getaddrinfo` converte o nome do site em IP (prefere IPv4). Também aceita URLs como `https://exemplo.com/pagina`.
-2. **Trava ética:** se o IP não for do próprio computador, o programa avisa e pede confirmação.
-3. **Fila + trabalhadores:** todas as portas vão para uma `queue.Queue`; N threads pegam portas da fila e tentam uma conexão TCP (`connect_ex`). Código `0` = porta **aberta**.
-4. **Barra de progresso:** a thread principal só acompanha o contador, protegido por um `threading.Lock`.
-5. **Banners:** nas portas abertas, o programa espera o serviço se apresentar (SSH, FTP, SMTP...) ou envia um `HEAD /` (HTTP) ou abre TLS (HTTPS) para ler o cabeçalho `Server`.
-6. **Relatórios:** módulos `csv` e escrita de texto em UTF-8.
+1. **Target resolution:** `socket.getaddrinfo` turns the website name into an IP (prefers IPv4). It also accepts URLs like `https://example.com/page`.
+2. **Ethical guard:** if the IP is not your own computer, the program warns you and asks for confirmation.
+3. **Queue + workers:** all ports go into a `queue.Queue`; N threads take ports from the queue and try a TCP connection (`connect_ex`). Code `0` = **open** port.
+4. **Progress bar:** the main thread only follows the counter, protected by a `threading.Lock`.
+5. **Banners:** on open ports, the program waits for the service to introduce itself (SSH, FTP, SMTP...) or sends a `HEAD /` (HTTP) or opens TLS (HTTPS) to read the `Server` header.
+6. **Reports:** the `csv` module and UTF-8 text writing.
 
-##  Dúvidas comuns
+## FAQ
 
-- **"Nenhuma porta aberta encontrada"**: as portas podem estar fechadas ou **filtradas por um firewall**. Isso é bom sinal de segurança!
-- **O escaneamento completo demora**: no Windows, conexões recusadas no localhost são mais lentas que no Linux. Aumente as threads (`--threads 1000`) ou reduza o timeout (`--timeout 0.3`). Em hosts remotos, um timeout muito baixo pode esconder portas abertas.
-- **Só TCP?** Sim. O sonarport faz *TCP connect scan*, que não precisa de permissão de administrador. Serviços apenas UDP (DNS sobre UDP, DHCP, SNMP...) não aparecem.
-- **Interromper:** aperte `Ctrl+C` a qualquer momento. Os resultados parciais são exibidos.
+- **"No open ports found"**: the ports may be closed or **filtered by a firewall**. That's a good security sign!
+- **The full scan is slow**: on Windows, refused connections on localhost are slower than on Linux. Increase the threads (`--threads 1000`) or lower the timeout (`--timeout 0.3`). On remote hosts, a very low timeout can hide open ports.
+- **TCP only?** Yes. Sonarport does a *TCP connect scan*, which does not require administrator rights. UDP-only services (DNS over UDP, DHCP, SNMP...) do not show up.
+- **Stop it:** press `Ctrl+C` at any time. Partial results are shown.
 
-## 🗂️ Estrutura do projeto
+## 🗂️ Project structure
 
-```
 sonarport/
-├── sonarport.py       # programa principal (tudo em um arquivo)
-├── requirements.txt   # dependência opcional (colorama)
-├── README.md          # este arquivo
-├── LICENSE            # licença MIT
-└── .gitignore         # ignora relatórios gerados e cache do Python
-```
+├── sonarport.py # main program (all in one file)
+├── requirements.txt # optional dependency (colorama)
+├── README.md # this file
+├── LICENSE # MIT license
+└── .gitignore # ignores generated reports and Python cache
 
-##  Ideias futuras
 
-- [ ] Escaneamento de faixas de rede (ex.: `192.168.0.0/24`), com confirmação
-- [ ] Exportação em JSON e HTML
-- [ ] Detecção de versão mais completa por serviço
-- [ ] Suporte a UDP
+## Future ideas
 
-## 📄 Licença
+- [ ] Network range scanning (e.g. `192.168.0.0/24`), with confirmation
+- [ ] Export to JSON and HTML
+- [ ] More complete per-service version detection
+- [ ] UDP support
 
-Distribuído sob a licença **MIT**. Veja [LICENSE](LICENSE).
+## 📄 License
+
+Distributed under the **MIT** license. See [LICENSE](LICENSE).
 
 ---
 
-<p align="center"><i>Feito para aprender redes e segurança de forma responsável. Escaneie só o que é seu. 🔒</i></p>
+<p align="center"><i>Made to learn networking and security responsibly. Scan only what is yours. 🔒</i></p>
