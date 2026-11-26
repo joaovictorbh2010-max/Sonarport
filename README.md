@@ -27,20 +27,20 @@
 
 ---
 
-## ✨ Recursos
+##  Recursos
 
 | Recurso | Descrição |
 |---|---|
-| 🖥️ **Menu interativo** | Escolha tudo digitando um número, sem decorar comandos |
-| ⌨️ **Linha de comando** | Argumentos para automação e scripts (`--alvo`, `--comuns`, `--completo`...) |
-| ⚡ **Multithread** | Centenas de "trabalhadores" em paralelo, com barra de progresso |
-| 🔎 **Identificação de serviços** | Mostra o serviço típico de cada porta (22 = SSH, 80 = HTTP, 443 = HTTPS...) |
-| 🏷️ **Leitura de banner** | Tenta ler a "apresentação" do serviço (ex.: versão do SSH, cabeçalho `Server` do HTTP/HTTPS) |
-| 🌐 **Resolução de DNS** | Digite `exemplo.com` e ele descobre o IP sozinho |
-| 🎨 **Tabela colorida** | Resultado organizado em porta / estado / serviço / banner |
-| 💾 **Relatórios** | Salva em `.txt` (legível) e `.csv` (abre no Excel / Planilhas) |
-| 🛡️ **Trava ética** | Localhost por padrão e confirmação obrigatória para outros alvos |
-| 📦 **Zero dependências** | Só a biblioteca padrão (`socket`, `threading`, `queue`...). `colorama` é opcional |
+|  **Menu interativo** | Escolha tudo digitando um número, sem decorar comandos |
+|  **Linha de comando** | Argumentos para automação e scripts (`--alvo`, `--comuns`, `--completo`...) |
+|  **Multithread** | Centenas de "trabalhadores" em paralelo, com barra de progresso |
+|  **Identificação de serviços** | Mostra o serviço típico de cada porta (22 = SSH, 80 = HTTP, 443 = HTTPS...) |
+|  **Leitura de banner** | Tenta ler a "apresentação" do serviço (ex.: versão do SSH, cabeçalho `Server` do HTTP/HTTPS) |
+|  **Resolução de DNS** | Digite `exemplo.com` e ele descobre o IP sozinho |
+|  **Tabela colorida** | Resultado organizado em porta / estado / serviço / banner |
+|  **Relatórios** | Salva em `.txt` (legível) e `.csv` (abre no Excel / Planilhas) |
+|  **Trava ética** | Localhost por padrão e confirmação obrigatória para outros alvos |
+|  **Zero dependências** | Só a biblioteca padrão (`socket`, `threading`, `queue`...). `colorama` é opcional |
 
 ## 📦 Instalação
 
@@ -48,7 +48,7 @@
 
 ```bash
 # 1. Baixe o projeto
-git clone https://github.com/SEU-USUARIO/sonarport.git
+git clone https://github.com/joaovictorbh2010-max/sonarport.git
 cd sonarport
 
 # 2. (Opcional) Instale o colorama para cores em qualquer terminal do Windows
@@ -57,7 +57,7 @@ pip install -r requirements.txt
 
 Pronto, não precisa de mais nada. Sem o `colorama` as cores continuam funcionando no Windows Terminal, no PowerShell moderno, no Linux e no macOS.
 
-## 🚀 Como usar
+##  Como usar
 
 ### Modo 1: menu interativo (mais fácil)
 
@@ -168,7 +168,7 @@ localhost,127.0.0.1,5357,tcp,ABERTA,WSDAPI,HTTP/1.1 503 Service Unavailable | Se
 5. **Banners:** nas portas abertas, o programa espera o serviço se apresentar (SSH, FTP, SMTP...) ou envia um `HEAD /` (HTTP) ou abre TLS (HTTPS) para ler o cabeçalho `Server`.
 6. **Relatórios:** módulos `csv` e escrita de texto em UTF-8.
 
-## ❓ Dúvidas comuns
+##  Dúvidas comuns
 
 - **"Nenhuma porta aberta encontrada"**: as portas podem estar fechadas ou **filtradas por um firewall**. Isso é bom sinal de segurança!
 - **O escaneamento completo demora**: no Windows, conexões recusadas no localhost são mais lentas que no Linux. Aumente as threads (`--threads 1000`) ou reduza o timeout (`--timeout 0.3`). Em hosts remotos, um timeout muito baixo pode esconder portas abertas.
@@ -186,7 +186,7 @@ sonarport/
 └── .gitignore         # ignora relatórios gerados e cache do Python
 ```
 
-## 🛣️ Ideias futuras
+##  Ideias futuras
 
 - [ ] Escaneamento de faixas de rede (ex.: `192.168.0.0/24`), com confirmação
 - [ ] Exportação em JSON e HTML
